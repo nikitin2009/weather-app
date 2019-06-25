@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <h1>Weather App</h1>
+  <div class="container">
+    
+    <div class="top">
+      <div class="name"></div>
+    </div><!-- top -->
+    
+    <div class="left">
+      <div class="row">
+        <span class="icon"></span> <span class="temp"></span>
+        <div class="col">
+          <button class="btn active">&deg;C</button><br>
+          <button class="btn">&deg;F</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="main"></span>, <span class="description"></span>
+      </div>
+    </div><!-- left-->
+    
+    <div class="rigth">
+      <div class="row">
+        <span class="title">Pressure: </span><span class="pressure"></span> hPa
+      </div>
+      <div class="row">
+        <span class="title">Humidity: </span><span class="humidity"></span> %
+      </div>
+      <div class="row">
+        <span class="title">Wind: </span><span class="wind"></span> m/s, <span class="arrow">&uarr;</span>
+      </div>
+    </div><!-- right -->
+  </div>
+
+  <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
