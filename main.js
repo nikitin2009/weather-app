@@ -4,21 +4,28 @@ $(document).ready(function() {
       celsius,
       fahrenheit;
 
-  function getWeather(position) {
+  function getWeather(arg) {
+    let options;
     
-    var latitude = position.coords.latitude,
-        longitude = position.coords.longitude;
+    if (typeof arg === 'string') {
+      options = {
+        q: arg
+      }
+    } else {
+      options = {
+        lat: arg.coords.latitude,
+        lon: arg.coords.longitude
+      }
+    }
     
     $.ajax({
       url: URL,
-      data: {
-        lat: latitude,
-        lon: longitude
-      }
+      data: options
     })
     .done(renderWeatherData)
     .error(function(err) {
-      $('.name').text(err);
+      $('.name').text(err.responseJSON.message);
+      emptyFields();
     });
   
   }
@@ -38,6 +45,16 @@ $(document).ready(function() {
     $('.wind').text(data.wind.speed);
     $('.arrow').css('transform', 'rotate(' + data.wind.deg + 'deg)');
   }
+
+  function emptyFields() {
+    $('.icon').html('');
+    $('.temp').text('');    
+    $('.main').text('');
+    $('.description').text('');
+    $('.pressure').text('');
+    $('.humidity').text('');
+    $('.wind').text('');
+  }
   
   function selectImg(images, temperature) {
     if (temperature <= -20) return images['freeze'];
@@ -50,6 +67,7 @@ $(document).ready(function() {
   $('form#cityName').on('submit', e => {
     e.preventDefault();
 
+    getWeather(document.getElementById('city').value);
   });
 
   $('form#currentLocation').on('submit', e => {
